@@ -1,4 +1,8 @@
-version '1.0.1'
+fx_version 'cerulean'
+game 'gta5'
+description 'Abel Gaming Fork - ESX Hold Up'
+author 'Abel Gaming'
+version '1.0'
 
 client_scripts {
 	'@es_extended/locale.lua',
