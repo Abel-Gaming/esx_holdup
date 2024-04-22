@@ -1,7 +1,5 @@
 version '1.0.1'
 
-dependency 'essentialmode'
-
 client_scripts {
 	'@es_extended/locale.lua',
 	'locales/de.lua',
