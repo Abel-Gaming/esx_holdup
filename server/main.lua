@@ -1,7 +1,5 @@
 local rob = false
 local robbers = {}
-ESX = nil
-
 ESX = exports["es_extended"]:getSharedObject()
 
 function get3DDistance(x1, y1, z1, x2, y2, z2)
@@ -29,21 +27,17 @@ end)
 
 RegisterServerEvent('esx_holdup:rob')
 AddEventHandler('esx_holdup:rob', function(robb)
-
 	local source = source
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local xPlayers = ESX.GetPlayers()
 
 	if Stores[robb] then
-
 		local store = Stores[robb]
-
 		if (os.time() - store.lastrobbed) < 600 and store.lastrobbed ~= 0 then
 
 			TriggerClientEvent('esx:showNotification', source, _U('already_robbed') .. (1800 - (os.time() - store.lastrobbed)) .. _U('seconds'))
 			return
 		end
-
 
 		local cops = 0
 		for i=1, #xPlayers, 1 do
@@ -55,9 +49,7 @@ AddEventHandler('esx_holdup:rob', function(robb)
 
 
 		if rob == false then
-
 			if(cops > 0)then
-
 				rob = true
 				for i=1, #xPlayers, 1 do
  					local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
@@ -70,9 +62,6 @@ AddEventHandler('esx_holdup:rob', function(robb)
 				TriggerClientEvent('esx:showNotification', source, _U('started_to_rob') .. store.nameofstore .. _U('do_not_move'))
 				TriggerClientEvent('esx:showNotification', source, _U('alarm_triggered'))
 				TriggerClientEvent('esx:showNotification', source, _U('hold_pos'))
-				--TriggerClientEvent('esx_holdup:currentlyrobbing', source, robb)
-				
-				-- ADD Ashdeuzo 
 				TriggerClientEvent('esx_holdup:currentlyrobbing', source, robb, secondsRemaining)
 				
 				

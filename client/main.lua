@@ -77,33 +77,17 @@ Citizen.CreateThread(function()
 		end
 	end
 end)
---[[ PAS DE BLIP POUR LES BRAQUAGES (LIBERATION DE LA VISIBILITÉ SUR LA CARTE)
-Citizen.CreateThread(function()
-	for k,v in pairs(Stores)do
-		local ve = v.position
 
-		local blip = AddBlipForCoord(ve.x, ve.y, ve.z)
-		SetBlipSprite(blip, 156)
-		SetBlipScale(blip, 0.8)
-		SetBlipAsShortRange(blip, true)
-		BeginTextCommandSetBlipName("STRING")
-		AddTextComponentString(_U('shop_robbery'))
-		EndTextCommandSetBlipName(blip)
-	end
-end)
-incircle = false
---]]
 Citizen.CreateThread(function()
 	while true do
 		local pos = GetEntityCoords(GetPlayerPed(-1), true)
 
+		-- Draw the markers and be able to rob the stores
 		for k,v in pairs(Stores)do
 			local pos2 = v.position
-
 			if(Vdist(pos.x, pos.y, pos.z, pos2.x, pos2.y, pos2.z) < 15.0)then
 				if not holdingup then
 					DrawMarker(1, v.position.x, v.position.y, v.position.z - 1, 0, 0, 0, 0, 0, 0, 1.0001, 1.0001, 1.5001, 1555, 0, 0,255, 0, 0, 0,0)
-
 					if(Vdist(pos.x, pos.y, pos.z, pos2.x, pos2.y, pos2.z) < 1.0)then
 						if (incircle == false) then
 							DisplayHelpText(_U('press_to_rob') .. v.nameofstore)
@@ -119,12 +103,10 @@ Citizen.CreateThread(function()
 			end
 		end
 
+		-- Check the distance from the store if a robbery is in progress
 		if holdingup then
-
 			drawTxt(0.66, 1.44, 1.0,1.0,0.4, _U('robbery_of') .. Stores[store].secondsRemaining .. _U('seconds_remaining'), 255, 255, 255, 255)
-
 			local pos2 = Stores[store].position
-
 			if(Vdist(pos.x, pos.y, pos.z, pos2.x, pos2.y, pos2.z) > 13)then
 				TriggerServerEvent('esx_holdup:toofar', store)
 			end
