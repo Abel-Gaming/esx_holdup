@@ -2,8 +2,6 @@ local holdingup = false
 local store = ""
 local secondsRemaining = 0
 local blipRobbery = nil
-ESX = nil
-
 ESX = exports["es_extended"]:getSharedObject()
 
 function DisplayHelpText(str)
