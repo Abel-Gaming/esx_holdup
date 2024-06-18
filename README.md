@@ -7,6 +7,7 @@
 
 <h2>Changes</h2>
 <ul>
+ <li>Used the new ESX import</li>
  <li>Cleaned up code</li>
  <li>Fixed some grammar usage in the EN locale</li>
 </ul>
